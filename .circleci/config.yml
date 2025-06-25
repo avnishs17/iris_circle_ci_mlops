@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Authenticate with google cloud
           command: |
-              echo "$cat gcp-key.json | base64 -w 0" | base64 --decode > gcp-key.json
+              echo "$GCLOUD_SERVICE_KEY" | base64 --decode > gcp-key.json
               gcloud auth activate-service-account --key-file=gcp-key.json
               gcloud auth configure-docker us-central1-docker.pkg.dev || gcloud auth configure-docker
 
@@ -62,7 +62,3 @@ workflows:
       - deploy_to_gke:
           requires:
             - build_docker_image
-
-
-
-
