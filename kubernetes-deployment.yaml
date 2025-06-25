@@ -17,6 +17,27 @@ spec:
         image: us-central1-docker.pkg.dev/gentle-waters-459210-d0/iris/iris:latest
         ports:
         - containerPort: 5000
+        # Resource limits and health checks
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        # Liveness and readiness probes
+        livenessProbe:
+          httpGet:
+            path: /health  
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health  
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
 
 ---
 
