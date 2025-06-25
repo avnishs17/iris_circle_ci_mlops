@@ -1,0 +1,6 @@
+.venv
+__pycache__
+*.pyc
+logs/
+gcp-key.json
+iris_mlops.egg-info
